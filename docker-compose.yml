@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16.2
+    container_name: postgres-db
+    restart: always
+    environment:
+      - POSTGRES_DB=checkout
+      - POSTGRES_USER=checkout
+      - POSTGRES_PASSWORD=checkout123
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+    driver: local
