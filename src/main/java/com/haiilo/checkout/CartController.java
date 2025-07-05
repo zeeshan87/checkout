@@ -1,15 +1,24 @@
 package com.haiilo.checkout;
 
+import com.haiilo.checkout.dto.CartDto;
+import com.haiilo.checkout.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cart")
-public class DeviceController {
+public class CartController {
+    private final CartService cartService;
+
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CartDto createDevice() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        long id = cartService.createCart().getId();
+        return new CartDto(id);
     }
 
     @PostMapping("/{cartId}/items/{itemId}")
