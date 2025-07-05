@@ -9,7 +9,7 @@ CREATE TABLE offer (
 CREATE TABLE item (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    unit_price NUMERIC NOT NULL,
+    unit_price NUMERIC NOT NULL CHECK (unit_price > 0),
     offer_id BIGINT UNIQUE,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW(),
@@ -18,6 +18,7 @@ CREATE TABLE item (
 
 CREATE TABLE cart (
     id BIGSERIAL PRIMARY KEY,
+    total_price NUMERIC NOT NULL DEFAULT 0 CHECK (total_price >= 0),
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
