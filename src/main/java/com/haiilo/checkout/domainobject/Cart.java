@@ -35,7 +35,7 @@ public class Cart {
 
     @Column(nullable = false)
     @Builder.Default
-    private BigDecimal totalPrice = BigDecimal.ZERO;
+    private BigDecimal totalPrice = new BigDecimal("0.00");
 
     @PrePersist
     private void onCreate() {

@@ -9,6 +9,7 @@ import com.haiilo.checkout.repository.CartRepository;
 import com.haiilo.checkout.repository.ItemRepository;
 import com.haiilo.checkout.strategy.PricingStrategy;
 import com.haiilo.checkout.strategy.PricingStrategyFactory;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,6 +31,7 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    @Transactional
     public Cart addItem(long cartId, long itemId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new CartNotFoundException(cartId));
